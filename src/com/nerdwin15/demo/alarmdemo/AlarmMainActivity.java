@@ -19,7 +19,7 @@ public class AlarmMainActivity extends Activity {
 
         //Create an offset from the current time in which the alarm will go off.
         Calendar cal = Calendar.getInstance();
-        cal.add(Calendar.SECOND, 5);
+        cal.add(Calendar.SECOND, 7200);
 
         //Create a new PendingIntent and add it to the AlarmManager
         Intent intent = new Intent(this, AlarmReceiverActivity.class);
