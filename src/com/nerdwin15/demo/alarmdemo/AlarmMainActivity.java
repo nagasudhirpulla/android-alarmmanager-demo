@@ -46,5 +46,11 @@ public class AlarmMainActivity extends Activity {
         am.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(),
                 pendingIntent);
     }
+    
+    private void modifyTime(int number) {
+        SharedPreferences.Editor editor = getSharedPreferences(MyPREFERENCES, MODE_PRIVATE).edit();
+        editor.putInt(Hours, number);
+        editor.commit();
+    }
 
 }
