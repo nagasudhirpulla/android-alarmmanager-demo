@@ -9,17 +9,33 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Window;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+
 public class AlarmMainActivity extends Activity {
+    
+    //Create the shared preferences object
+       SharedPreferences sharedpreferences;
+       public static final String MyPREFERENCES = "MyPrefs" ;
+       public static final String Hours = "hours";
+       int hournumber;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
             this.requestWindowFeature(Window.FEATURE_NO_TITLE);
        setContentView(R.layout.main);
+       
+       sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+       hournumber = "2";
+       if (sharedpreferences.contains(Name))    {
+         hournumber = sharedpreferences.getString(Hours, "2");
+        }
 
         //Create an offset from the current time in which the alarm will go off.
         Calendar cal = Calendar.getInstance();
-        cal.add(Calendar.SECOND, 7200);
+        cal.add(Calendar.SECOND, Integer.parseInt(hournumber)*3600);
 
         //Create a new PendingIntent and add it to the AlarmManager
         Intent intent = new Intent(this, AlarmReceiverActivity.class);
