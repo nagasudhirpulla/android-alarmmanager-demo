@@ -28,14 +28,14 @@ public class AlarmMainActivity extends Activity {
        setContentView(R.layout.main);
        
        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-       hournumber = "2";
+       hournumber = 2;
        if (sharedpreferences.contains(Name))    {
-         hournumber = sharedpreferences.getString(Hours, "2");
+         hournumber = sharedpreferences.getInt(Hours, 2);
         }
 
         //Create an offset from the current time in which the alarm will go off.
         Calendar cal = Calendar.getInstance();
-        cal.add(Calendar.SECOND, Integer.parseInt(hournumber)*3600);
+        cal.add(Calendar.SECOND, hournumber*3600);
 
         //Create a new PendingIntent and add it to the AlarmManager
         Intent intent = new Intent(this, AlarmReceiverActivity.class);
